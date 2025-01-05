@@ -46,42 +46,46 @@ export const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <input
-          type="text"
-          name=""
-          id=""
-          value={searchText}
-          className="search-box"
-          onChange={(e) => setsearchText(e.target.value)}
-        />
-        <button
-          className="search"
-          onClick={() => {
-            const filteredText = listOfRest.filter((res) =>
-              res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
-            );
-            setfilteredText(filteredText);
-            console.log(searchText);
-          }}
-        >
-          Search
-        </button>
-        <button
-          className="filterbtn"
-          onClick={() => {
-            let filterList = listOfRest.filter(
-              (res) => res?.info?.rating?.aggregate_rating > 4
-            );
-            // setListOfRest(filterList);
-            setfilteredText(filterList);
-          }}
-        >
-          Top Rated Restaurant
-        </button>
+      <div className="filter flex">
+        <div className="search p-4 m-4">
+          <input
+            type="text"
+            name=""
+            id=""
+            value={searchText}
+            className="border border-solid border-black"
+            onChange={(e) => setsearchText(e.target.value)}
+          />
+          <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-md"
+            onClick={() => {
+              const filteredText = listOfRest.filter((res) =>
+                res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setfilteredText(filteredText);
+              console.log(searchText);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <div className="p-4 m-4 flex items-center">
+          <button
+            className="px-4 py-2 bg-gray-200 m-4 rounded-md"
+            onClick={() => {
+              let filterList = listOfRest.filter(
+                (res) => res?.info?.rating?.aggregate_rating > 4
+              );
+              // setListOfRest(filterList);
+              setfilteredText(filterList);
+            }}
+          >
+            Top Rated Restaurant
+          </button>
+        </div>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap ">
         {filteredText.map((res) =>
           res?.info?.resId ? (
             <NavLink

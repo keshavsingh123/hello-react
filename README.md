@@ -71,3 +71,7 @@ Lazy-Loading (create bundle for particular) on-demand Loading
 {lazy, Suspense} from 'react' // named import like, Suspense is a component
 lazy(()=>import('./component/grocery')) //like use/write // create own bundle, you can see network=>JS
 element:<Suspense fallback={<p>Loading...</p>}> <Grocery/> </Suspense> // where you are giving route
+
+# Tailwind
+
+how you create your react project(parcel/vite/create-react-app), according that you can find cmd on Tailwindcss site

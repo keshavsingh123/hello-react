@@ -1,9 +1,10 @@
 // import { resObj } from "../utils/mockData";
-import { RestaurantCard } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { RestaurantCard, withCfoLabel } from "./RestaurantCard";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { NavLink } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 // State variable(super powerful variable)
 
 export const Body = () => {
@@ -12,6 +13,10 @@ export const Body = () => {
   const [searchText, setsearchText] = useState("");
   const [filteredText, setfilteredText] = useState([]);
   const onlineStatus = useOnlineStatus();
+
+  const LabelCard = withCfoLabel(RestaurantCard); // HOC import
+  const { loggedIn, setUserName } = useContext(UserContext);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -21,17 +26,16 @@ export const Body = () => {
       "https://www.zomato.com/webroutes/getPage?page_url=/chhindwara/chhindwara-locality-restaurants?place_name=Rautha+Wada%2C+Chhindwara&dishv2_id=9055&context=delivery&location=&isMobile=1"
     );
     const jsonformat = await data.json();
-    console.log(jsonformat);
+    // console.log(jsonformat);
 
     const restaurants =
       jsonformat?.page_data?.sections?.SECTION_SEARCH_RESULT || [];
     setListOfRest(restaurants);
     setfilteredText(restaurants);
 
-    const filterId = filteredText.forEach((res) => {
-      console.log(res?.info?.resId); // Logs the resId for each restaurant
-    });
-    console.log(filterId);
+    // const filterId = filteredText.forEach((res) => {
+    //   console.log(res?.info?.resId); // Logs the resId for each restaurant
+    // });
   };
 
   if (onlineStatus !== true) {
@@ -83,19 +87,34 @@ export const Body = () => {
             Top Rated Restaurant
           </button>
         </div>
+        <div className="p-4 m-4">
+          <label>UserName:</label>
+          <input
+            type="text"
+            name=""
+            id=""
+            value={loggedIn}
+            className="border border-solid border-black"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
 
-      <div className="flex flex-wrap ">
-        {filteredText.map((res) =>
+      <div className="flex flex-wrap">
+        {filteredText.map((res, index) =>
           res?.info?.resId ? (
             <NavLink
-              to={`/restaurant/${res?.info?.resId}`} // Encode the name for safe URL usage
-              key={res?.info?.resId}
+              to={`/restaurant/${res?.info?.resId}`} // Encode the name for safe URL usage to={`/restaurant/${res?.info?.name}`}
+              key={res.info.resId}
             >
-              <RestaurantCard restaurant={res.info} />
+              {res.info.cfo ? (
+                <LabelCard restaurant={res.info} />
+              ) : (
+                <RestaurantCard restaurant={res.info} />
+              )}
             </NavLink>
           ) : (
-            <div key={res?.info?.resId}>Restaurant data unavailable</div>
+            <div key={index}>Restaurant data unavailable</div>
           )
         )}
       </div>

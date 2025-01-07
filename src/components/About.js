@@ -1,6 +1,7 @@
 import { Component } from "react";
 import User from "./User";
 import UserClass from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 // const About = () => {
 //   return (
@@ -25,6 +26,7 @@ class About extends Component {
   render() {
     // console.log("parent render");
 
+    //You can pass UserContext Multiple times
     return (
       <div>
         <h1>About us</h1>
@@ -32,6 +34,11 @@ class About extends Component {
         {/*  <User name={"Abhishek Singh"} /> */}
         <UserClass name={"Keshav Singh"} location={"Kanpur"} />
         {/* <UserClass name={"abhishek Singh"} location={"lucknow"} /> */}
+        <UserContext.Consumer>
+          {({ loggedIn }) => {
+            return <h1>{loggedIn}</h1>;
+          }}
+        </UserContext.Consumer>
       </div>
     );
   }

@@ -75,3 +75,14 @@ element:<Suspense fallback={<p>Loading...</p>}> <Grocery/> </Suspense> // where 
 # Tailwind
 
 how you create your react project(parcel/vite/create-react-app), according that you can find cmd on Tailwindcss site
+
+# Redux Tookit RTK
+
+- install @reduxjs/toolkit, react-redux
+- Build Own Store
+- connect our store to App
+- create slice(e.g cart)
+- dispatch action
+- Selector
+
+# Testing

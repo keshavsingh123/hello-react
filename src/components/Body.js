@@ -57,6 +57,7 @@ export const Body = () => {
             name=""
             id=""
             value={searchText}
+            data-testid="searchInput"
             className="border border-solid border-black"
             onChange={(e) => setsearchText(e.target.value)}
           />

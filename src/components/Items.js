@@ -13,7 +13,7 @@ const Items = () => {
     <>
       {/* <h1 className="text-center text-bold">Items</h1> */}
       {resMenu?.menus?.map((menuObj, index) => (
-        <div key={index}>
+        <div key={index} data-testid="foodItems">
           {menuObj?.menu?.categories?.map((c) => (
             <div key={c?.category?.id}>
               {c?.category?.items?.map((item) => (
@@ -30,12 +30,12 @@ const Items = () => {
                       <h5 className="text-gray-500 mb-4">
                         ₹ {item?.item?.default_price}
                       </h5>
-                      <span
+                      <button
                         onClick={() => handleAdd(item?.item)}
                         className="bg-sky-500 text-xl text-white p-2 my-4 rounded-lg cursor-pointer"
                       >
                         Add+
-                      </span>
+                      </button>
                     </div>
 
                     <div className="col-span-6">

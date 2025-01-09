@@ -5,9 +5,13 @@ export const RestaurantCard = (props) => {
   // console.log(props);
   //const {resName,cuisine} = props
   const { restaurant } = props;
+  console.log(restaurant);
   const { loggedIn } = useContext(UserContext);
   return (
-    <div className="p-4 m-4 w-56  bg-gray-200 rounded-md hover:bg-gray-800 hover:text-red-500">
+    <div
+      data-testid="resCard"
+      className="p-4 m-4 w-56  bg-gray-200 rounded-md hover:bg-gray-800 hover:text-red-500"
+    >
       <img
         src={restaurant?.image?.url}
         alt="res-logo"

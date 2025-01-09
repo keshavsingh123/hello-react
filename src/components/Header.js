@@ -7,7 +7,7 @@ import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 //React- functional component
 export const Header = () => {
-  const [btnName, setBtnName] = useState("login");
+  const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedIn } = useContext(UserContext);
   //subscribing the cart slice
@@ -41,7 +41,7 @@ export const Header = () => {
           <button
             className="header-btn"
             onClick={() => {
-              btnName === "login" ? setBtnName("logout") : setBtnName("login");
+              btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
             }}
           >
             {btnName}

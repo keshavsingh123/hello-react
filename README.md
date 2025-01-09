@@ -86,3 +86,21 @@ how you create your react project(parcel/vite/create-react-app), according that 
 - Selector
 
 # Testing
+
+- unit testing (test component in isolation of the app)
+- Integration testing
+- End to end testing
+
+# -Setting up testing in our app
+
+-install react testing library
+
+- install jest
+- I installed babed dependencies (jest->using babel -> install first one and create Babel.config.js file in root and paste code from abie path )
+- configure babel
+  -configure parcel config file to disable default Babel transpilation(parecel docs-> javscript -> babel / .parcelrc(create in root folder))
+- jest configuration (npx jest --init)
+- install jsDOM library (), if you are using jest more than 28 (npm i -D jest-environment-jsdom)
+- install @babel/preset-react to make JSX work in test case (npm i -D @babel/preset-react)
+  - add ["@babel/preset-react",{runtime:'automatic'}] in babel.config.js file
+- install @testing-library/jest-dom & import in testcase file

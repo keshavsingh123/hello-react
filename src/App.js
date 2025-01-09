@@ -17,7 +17,7 @@ const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
   //loggedIn value will effect all over app
-  const [userName, setUserName] = useState("Admin");
+  const [userName, setUserName] = useState("Context");
   useEffect((prev) => {
     setUserName(userName);
   }, []);
